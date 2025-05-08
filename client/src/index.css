@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --base-clr: #fafaf8;
-  --text-clr: #23282d;
-  --base-rev: #23282d;
-  --text-rev: #fafaf8;
+  --base-clr: #e5e5e5;
+  --text-clr: #121314;
+  --base-rev: #121314;
+  --text-rev: #e5e5e5;
+  --border-clr: #000000;
 }
 
 .darkmode {
-  --base-clr: #23282d;
-  --text-clr: #fafaf8;
-  --base-rev: #fafaf8;
-  --text-rev: #23282d;
+  --base-clr: #121314;
+  --text-clr: #e5e5e5;
+  --base-rev: #e5e5e5;
+  --text-rev: #121314;
+  --border-clr: #ffffff;
 }
 
 body {
