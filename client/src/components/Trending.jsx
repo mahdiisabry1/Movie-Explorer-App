@@ -1,38 +1,21 @@
 import React from "react";
+import MovieGrid from "./MovieGrid";
 
 const Trending = () => {
   return (
     <>
-      <div className="w-full h-[500px] relative overflow-hidden border-[15px] border-[var(--border-clr)] hover:border-10 transition-all">
-        <img
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4NIG3nWUeVJNnXUb68P235dwUNI2Z7klIc_xF9l4G6wD84FS4YBiUqODD-fG6tiYxPAbL1LEvIHhSPYliCcxrGB0ii2UsLRQO3NzCEok-ujxlumqvIu-PvD4ncKQGaMWN2KelkPmoQ64/s1600/slides1.jpg"
-          alt="contain"
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        />
-        <div className="absolute right-0 bg-black/75 h-full w-2/5">
-          <div className="p-4 text-white text-4xl font-bold">
-            <h1>Joker: Folie à Deux</h1>
+      <div className="flex w-full gap-5">
+        <div className="w-4/5 flex flex-col">
+          <div className="font-bold bg-[var(--base-rev)] text-[var(--text-rev)] p-3">
+            Trending Movies
           </div>
-          <div className="p-4 text-white text-sm font-bold">
-            <h4>2025</h4>
-            <h4>Action/Drama/Horror/Thriller</h4>
+          <div className="w-full mt-3 mb-3">
+            <MovieGrid />
           </div>
-          <p className="p-4 text-amber-50">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-            praesentium corrupti ut vitae aliquid tempora perspiciatis aliquam
-            asperiores aspernatur optio, veniam rem hic exercitationem facere
-            esse?
-          </p>
-          <div className="p-4 text-white text-sm font-bold">
-            <h4>
-              IMDB Rating: <span className="text-amber-200">6.0/10</span>
-            </h4>
-            <h3>
-              Trailer - <span className="text-red-500">Youtube</span>
-            </h3>
-          </div>
-          <div className="p-4 text-white text-sm font-bold">
-            <button className="px-5 py-2  border-2">More..</button>
+        </div>
+        <div className="w-1/5 flex flex-col">
+          <div className="bg-[var(--base-rev)] text-[var(--text-rev)] p-3">
+            Filter
           </div>
         </div>
       </div>

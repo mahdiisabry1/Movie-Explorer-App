@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { IoMenu } from "react-icons/io5";
 import { HiTrendingUp } from "react-icons/hi";
@@ -8,14 +7,14 @@ import { Link } from "react-router-dom";
 import Mode from "../ui/Mode";
 import TextBox from "../ui/TextBox";
 
-const Navbar = () => {
+const Navbar = ({ onTrendingClick }) => {
   // To Control The Menu Div
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       {/* Overlay Panel */}
       <div
-        className={`fixed top-0 left-0 h-full w-full bg-black text-white z-50 transform transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-full bg-[var(--base-rev)] text-[var(--text-rev)] z-50 transform transition-transform duration-500 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } overflow-hidden`}
       >
@@ -24,7 +23,7 @@ const Navbar = () => {
           {/* menu content here */}
         </div>
         <button
-          className="absolute text-white text-4xl cursor-pointer"
+          className="absolute text-[var(--text-rev)] text-4xl cursor-pointer"
           onClick={() => setIsOpen(false)}
         >
           ✕
@@ -43,10 +42,13 @@ const Navbar = () => {
             className="text-3xl cursor-pointer"
             onClick={() => setIsOpen(true)}
           />
-          <HiTrendingUp className="text-2xl cursor-pointer" />
+          <HiTrendingUp
+            className="text-2xl cursor-pointer"
+            onClick={onTrendingClick}
+          />
           <IoBookmarks className="cursor-pointer" />
         </div>
-        <TextBox placeholder="Search" showIcon={true}/>
+        <TextBox placeholder="Search" showIcon={true} />
         <Link to="/sign-in">
           <Button
             variant="contained"

@@ -7,6 +7,7 @@ import MainLayout from "./layouts/MainLayout.jsx";
 import HomePage from "./routes/HomePage.jsx";
 import SignInPage from "./routes/SignInPage.jsx";
 import SignupPage from "./routes/SignupPage.jsx";
+import { MovieProvider } from "./context/MovieContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <MovieProvider>
+      <RouterProvider router={router} />
+    </MovieProvider>
   </StrictMode>
 );

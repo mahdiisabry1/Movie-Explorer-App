@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  --background-base: #E4E7E4;
   --base-clr: #e5e5e5;
   --text-clr: #121314;
   --base-rev: #121314;
@@ -9,6 +10,7 @@
 }
 
 .darkmode {
+  --background-base: hsla(0, 0%, 0%, 1);
   --base-clr: #121314;
   --text-clr: #e5e5e5;
   --base-rev: #e5e5e5;
@@ -20,7 +22,7 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: var(--base-clr);
+  background-color: var(--background-base);
   color: var(--text-clr);
   font-family: "News Cycle", sans-serif;
 }
