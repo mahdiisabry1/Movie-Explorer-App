@@ -8,6 +8,8 @@ import HomePage from "./routes/HomePage.jsx";
 import SignInPage from "./routes/SignInPage.jsx";
 import SignupPage from "./routes/SignupPage.jsx";
 import { MovieProvider } from "./context/MovieContext.jsx";
+import FavouritesPage from "./routes/FavouritesPage.jsx";
+import MoviesPage from "./routes/MoviesPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignupPage />,
+      },
+      {
+        path: "/favourites",
+        element: <FavouritesPage />,
+      },
+      {
+        path: "/movies",
+        element: <MoviesPage />,
       },
     ],
   },

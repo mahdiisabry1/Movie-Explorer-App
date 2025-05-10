@@ -11,7 +11,7 @@ const Featured = () => {
           alt="contain"
           className="absolute top-0 left-0 w-full h-full object-cover"
         />
-        <div className="absolute right-0 bg-black/75 h-full w-2/5 shadow-2xl">
+        <div className="absolute right-0 bg-black/75 h-full w-2/5 shadow-2xl p-4">
           <div className="p-4 text-white text-4xl font-bold">
             <h1>The Lone Ranger</h1>
           </div>

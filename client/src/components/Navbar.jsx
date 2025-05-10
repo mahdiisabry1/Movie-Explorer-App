@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import { IoMenu } from "react-icons/io5";
 import { HiTrendingUp } from "react-icons/hi";
@@ -6,10 +6,34 @@ import { IoBookmarks } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Mode from "../ui/Mode";
 import TextBox from "../ui/TextBox";
+import SearchResults from "../ui/SearchResults";
+import { useMovies } from "../context/MovieContext";
 
 const Navbar = ({ onTrendingClick }) => {
   // To Control The Menu Div
   const [isOpen, setIsOpen] = useState(false);
+  const [showRecentSearches, setShowRecentSearches] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchRef = useRef(null);
+  const { fetchSearchMovies } = useMovies();
+
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    fetchSearchMovies(query);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowRecentSearches(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <>
       {/* Overlay Panel */}
@@ -46,23 +70,37 @@ const Navbar = ({ onTrendingClick }) => {
             className="text-2xl cursor-pointer"
             onClick={onTrendingClick}
           />
-          <IoBookmarks className="cursor-pointer" />
+          <Link to="/favourites">
+            <IoBookmarks className="cursor-pointer" />
+          </Link>
         </div>
-        <TextBox placeholder="Search" showIcon={true} />
-        <Link to="/sign-in">
-          <Button
-            variant="contained"
-            size="medium"
-            sx={{
-              backgroundColor: "var(--base-rev)",
-              color: "var(--text-rev)",
-            }}
-          >
-            Sign&nbsp;In
-          </Button>
-        </Link>
-        {/* Handle Dark and Light Mode */}
-        <Mode />
+        <div className="flex grow-1 gap-2.5">
+          <div className="relative flex grow-1 flex-col" ref={searchRef}>
+            <TextBox
+              placeholder="Search"
+              showIcon={true}
+              onFocus={() => setShowRecentSearches(true)}
+              onChange={handleInputChange}
+            />
+            <div className="">{showRecentSearches && <SearchResults />}</div>
+          </div>
+          <div className="flex gap-2">
+            <Link to="/sign-in">
+              <Button
+                variant="contained"
+                size="medium"
+                sx={{
+                  backgroundColor: "var(--base-rev)",
+                  color: "var(--text-rev)",
+                }}
+              >
+                Sign&nbsp;In
+              </Button>
+            </Link>
+            {/* Handle Dark and Light Mode */}
+            <Mode />
+          </div>
+        </div>
       </div>
     </>
   );

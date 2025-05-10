@@ -5,8 +5,7 @@ import { useMovies } from "../context/MovieContext";
 const MovieGrid = () => {
   const [visibleCount, setVisibleCount] = useState(8);
 
-  const { movies, loading } = useMovies();
-  if (loading) return "Loading More...";
+  const { movies } = useMovies();
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 8);
