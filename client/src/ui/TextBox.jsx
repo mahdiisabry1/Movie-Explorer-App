@@ -1,12 +1,31 @@
 import TextField from "@mui/material/TextField";
+import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 const TextBox = ({
-  placeholder = "Search",
+  placeholder = "Search All Movies",
   showIcon = true,
   onFocus,
+  textValue,
   onChange,
 }) => {
+  const [inputValue, setInputValue] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    if (inputValue?.trim()) {
+      navigate("/movies");
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const value = e?.target?.value ?? ""
+    setInputValue(value);
+    if (onChange) onChange(e);
+  };
+
   return (
     <>
       <div className="w-full flex grow-1">
@@ -14,9 +33,10 @@ const TextBox = ({
           fullWidth
           label={placeholder}
           id="outlined-size-small"
+          value={textValue}
           defaultValue=""
           onFocus={onFocus}
-          onChange={onChange}
+          onChange={(onChange, handleInputChange)}
           size="small"
           sx={{
             "& .MuiOutlinedInput-root": {
@@ -39,9 +59,10 @@ const TextBox = ({
             },
           }}
         />
-        {showIcon && (
+        {showIcon && inputValue.trim() && (
           <div
             className="absolute h-full right-0 flex justify-center items-center w-10 text-3xl rounded-r-md cursor-pointer"
+            onClick={handleNavigate}
           >
             <CiSearch />
           </div>

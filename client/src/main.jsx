@@ -10,6 +10,7 @@ import SignupPage from "./routes/SignupPage.jsx";
 import { MovieProvider } from "./context/MovieContext.jsx";
 import FavouritesPage from "./routes/FavouritesPage.jsx";
 import MoviesPage from "./routes/MoviesPage.jsx";
+import { FavouritesProvider } from "./context/FavouritesContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <MovieProvider>
-      <RouterProvider router={router} />
+      <FavouritesProvider>
+        <RouterProvider router={router} />
+      </FavouritesProvider>
     </MovieProvider>
   </StrictMode>
 );

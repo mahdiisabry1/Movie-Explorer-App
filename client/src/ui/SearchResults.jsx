@@ -3,7 +3,7 @@ import { FaHistory } from "react-icons/fa";
 import { useMovies } from "../context/MovieContext";
 import SearchCard from "./SearchCard";
 
-const SearchResults = () => {
+const SearchResults = ({ onSelect }) => {
   const { searchMovies } = useMovies();
   const [visibleCount] = useState(4);
 
@@ -19,9 +19,9 @@ const SearchResults = () => {
           </div>
         </div>
         <div className="p-2 cursor-pointer flex items-center gap-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1">
             {visibleMovies.map((movie, index) => (
-              <SearchCard key={index} {...movie} />
+              <SearchCard key={index} {...movie} onSelect={onSelect}/>
             ))}
           </div>
         </div>

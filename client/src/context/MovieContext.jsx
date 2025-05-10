@@ -7,6 +7,7 @@ const MovieContext = createContext();
 export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [searchMovies, setSearchMovies] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchTrendingMovies = async () => {
@@ -36,8 +37,20 @@ export const MovieProvider = ({ children }) => {
       const res = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=5e05e80958f2a076bea98d5c0508e82a&query=${query}&include_adult=false&language=en-US&page=1`
       );
-      console.log(res.data.results)
       setSearchMovies(res.data.results);
+    } catch (error) {
+      console.error("Error Loading Movies", error);
+    }
+  };
+
+  const fetchUpcomingMovies = async () => {
+    try {
+      const res = await axios.get(
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${
+          import.meta.env.VITE_API_KEY
+        }`
+      );
+      setUpcomingMovies(res.data.results);
     } catch (error) {
       console.error("Error Loading Movies", error);
     }
@@ -46,9 +59,7 @@ export const MovieProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      await Promise.all([
-        fetchTrendingMovies(),
-      ]);
+      await Promise.all([fetchTrendingMovies(), fetchUpcomingMovies()]);
       setLoading(false);
     };
     fetchData();
@@ -56,7 +67,13 @@ export const MovieProvider = ({ children }) => {
 
   return (
     <MovieContext.Provider
-      value={{ movies, loading, searchMovies, fetchSearchMovies }}
+      value={{
+        movies,
+        loading,
+        searchMovies,
+        upcomingMovies,
+        fetchSearchMovies,
+      }}
     >
       {children}
     </MovieContext.Provider>

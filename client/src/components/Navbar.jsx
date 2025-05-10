@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import { IoMenu } from "react-icons/io5";
@@ -11,6 +12,7 @@ import { useMovies } from "../context/MovieContext";
 
 const Navbar = ({ onTrendingClick }) => {
   // To Control The Menu Div
+  const [textValue, settextValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [showRecentSearches, setShowRecentSearches] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -77,10 +79,10 @@ const Navbar = ({ onTrendingClick }) => {
         <div className="flex grow-1 gap-2.5">
           <div className="relative flex grow-1 flex-col" ref={searchRef}>
             <TextBox
-              placeholder="Search"
               showIcon={true}
               onFocus={() => setShowRecentSearches(true)}
               onChange={handleInputChange}
+              inputValue={textValue}
             />
             <div className="">{showRecentSearches && <SearchResults />}</div>
           </div>
