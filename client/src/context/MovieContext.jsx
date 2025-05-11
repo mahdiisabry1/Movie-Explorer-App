@@ -35,7 +35,9 @@ export const MovieProvider = ({ children }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=5e05e80958f2a076bea98d5c0508e82a&query=${query}&include_adult=false&language=en-US&page=1`
+        `https://api.themoviedb.org/3/search/movie?api_key=${
+          import.meta.env.VITE_API_KEY
+        }&query=${query}&include_adult=false&language=en-US&page=1`
       );
       setSearchMovies(res.data.results);
     } catch (error) {
