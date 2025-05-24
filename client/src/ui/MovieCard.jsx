@@ -32,7 +32,10 @@ const MovieCard = ({
 
   return (
     <>
-      <div className="group relative w-full h-80 rounded-lg flex overflow-hidden hover: transition-all">
+      <div
+        className="group relative w-full h-80 rounded-lg flex overflow-hidden hover: transition-all z-20"
+        onClick={() => setShowModal(true)}
+      >
         <div className="overflow-hidden">
           <img
             src={`https://image.tmdb.org/t/p/w220_and_h330_face${backdrop_path}`}
@@ -41,14 +44,15 @@ const MovieCard = ({
           />
         </div>
         <div className="flex w-full flex-col justify-between p-3 relative text-white">
-          <div className="flex gap-1">
+          <div className="flex gap-1 z-40">
             <h3
               className={`text-sm font-semibold p-1.5 rounded-lg flex gap-1.5 transition-all cursor-default ${
                 isAlreadyFavourited
                   ? "bg-gray-400 text-white cursor-not-allowed"
                   : "bg-amber-300 text-black hover:bg-black hover:text-amber-300"
               }`}
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation(); 
                 if (!isAlreadyFavourited) addToFavourites(movie);
               }}
             >
