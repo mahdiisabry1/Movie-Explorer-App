@@ -84,7 +84,7 @@ const Navbar = ({ onTrendingClick }) => {
               onChange={handleInputChange}
               inputValue={textValue}
             />
-            <div className="">{showRecentSearches && <SearchResults />}</div>
+
           </div>
           <div className="flex gap-2">
             <Link to="/sign-in">
