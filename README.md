@@ -33,3 +33,5 @@ Add movie trailer playback
 User profile and history tracking
 Create movie playlists
 Integrate user reviews and community ratings
+
+Client = docker run -p 5173:5173 \  -v $(pwd):/react-app \ -v /react-app/node_modules \ movie-explorer-app:dev
